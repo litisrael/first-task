@@ -24,18 +24,18 @@ const rl = readline.createInterface({ input, output });
     })
 
     rl.close();
-    const users= []
+    
 
     let user = {
         name: name,
         gender: gender,
         kilos: kilos,
-        meter:meter,
+        meter:meter ,
     
     } 
-   users.push(user)
+   
     
-    appendFile("./users.jsob", JSON.stringify(users),(err)=>{
+    appendFile("./user.json", JSON.stringify(user) + "\n",(err)=>{
         if(err){
             console.log(err)
             exit(1) 

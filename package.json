@@ -1,0 +1,21 @@
+{
+  "name": "isr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO.git"
+  },
+  "author": "isroellit@gmail.com",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO/issues"
+  },
+  "homepage": "https://github.com/NOMBRE_USUARIO/NOMBRE_PROYECTO#readme"
+}
