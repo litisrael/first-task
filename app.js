@@ -10,37 +10,34 @@ const rl = readline.createInterface({ input, output });
     const askForName = async (msg = null) => {
       if (msg) console.log(msg)
       const answer = await rl.question("Write your first and last name\n")
-      return answer.length < 4 ? askForName("name should have more than 4 letters") : answer
+      return answer.length < 4 ? askForName("name should have more than 4 letters\n") : answer
     }
 
-    let name = await askForName()
+    const askForWeight = async (msg = null) => {
+      if (msg) console.log(msg)
+      const answer = await rl.question("add the weight in kilos (must be greater than or equal to 10):\n");
+      
+      if (isNaN(answer)) return askForWeight("The entered value is not a valid number. Try again.\n")
+      if (answer < 10) return askForWeight("The weight must be greater than or equal to 10 kilos. Try again.\n")
+
+      return answer
+    }
+
+    const name = await askForName()
     
     let gender= null
     while (gender !== 'M' && gender !== 'F') {
-        gender = await rl.question('gender: Please answer "M" or "F":\n');
-      }
-      
-
-      let kilos = null;
-
-      while (isNaN(kilos) || kilos < 10) {
-        kilos = await rl.question("add the weight in kilos (must be greater than or equal to 10):\n");
-      
-        if (isNaN(kilos)) {
-          console.log("The entered value is not a valid number. Try again.\n");
-        } else if (kilos < 10) {
-          console.log("The weight must be greater than or equal to 10 kilos. Try again.\n");
-        }
-      }
+      gender = await rl.question('gender: Please answer "M" or "F":\n');
+    }
     
-    const meter = await rl.question("height in meters!\n", (answer) => {
-
-    })
+    const kilos = await askForWeight()
+    
+    const meter = await rl.question("height in meters!\n")
 
     rl.close();
-    
+    console.log(name,gender,kilos,meter)
 
-    let user = {
+    const user = {
         name: name,
         gender: gender,
         kilos: kilos,
@@ -48,9 +45,12 @@ const rl = readline.createInterface({ input, output });
     
     } 
   
+    const users = []
     
-    appendFile("./user.json", JSON.stringify(user) +","+ "\n",(err)=>{
+    users.push(user)
+    appendFile("./users.json", JSON.stringify(users)+ "\n",(err)=>{
         if(err){
             console.log(err)
             exit(1) 
         }})
+       
