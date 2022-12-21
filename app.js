@@ -10,7 +10,10 @@ const rl = readline.createInterface({ input, output });
     const askForName = async (msg = null) => {
       if (msg) console.log(msg)
       const answer = await rl.question("Write your first and last name\n")
-      return answer.length < 4 ? askForName("name should have more than 4 letters\n") : answer
+      if (answer.length < 4 )return askForName("name should have more than 4 letters\n")  
+      if (answer.length > 25 )return askForName("name should have no more than 25 letters\n") 
+      if (/\d/.test(answer))return askForName ("name should have letters\n")
+      return answer
     }
 
     const askForWeight = async (msg = null) => {
@@ -19,7 +22,7 @@ const rl = readline.createInterface({ input, output });
       
       if (isNaN(answer)) return askForWeight("The entered value is not a valid number. Try again.\n")
       if (answer < 10) return askForWeight("The weight must be greater than or equal to 10 kilos. Try again.\n")
-
+      if (answer > 200) return askForWeight("The weight should be less than 200 Kilos. Try again.\n")
       return answer
     }
 
@@ -36,6 +39,7 @@ const rl = readline.createInterface({ input, output });
 
     rl.close();
     console.log(name,gender,kilos,meter)
+ 
 
     const user = {
         name: name,
@@ -44,11 +48,10 @@ const rl = readline.createInterface({ input, output });
         meter:meter 
     
     } 
-  
-    const users = []
+
     
-    users.push(user)
-    appendFile("./users.json", JSON.stringify(users)+ "\n",(err)=>{
+   
+    appendFile("./users.json", JSON.stringify(user)+ "\n",(err)=>{
         if(err){
             console.log(err)
             exit(1) 
