@@ -16,16 +16,24 @@ const rl = readline.createInterface({ input, output });
       return answer
     }
 
-    const askForWeight = async (msg = null) => {
+    const askForWeight = async (msg = null)   => {
       if (msg) console.log(msg)
       const answer = await rl.question("add the weight in kilos (must be greater than or equal to 10):\n");
       
-      if (isNaN(answer)) return askForWeight("The entered value is not a valid number. Try again.\n")
-      if (answer < 10) return askForWeight("The weight must be greater than or equal to 10 kilos. Try again.\n")
-      if (answer > 200) return askForWeight("The weight should be less than 200 Kilos. Try again.\n")
+      if (isNaN(answer)) return askForWeight("The entered value is not a valid number. Try again.")
+      if (answer < 10) return askForWeight("The weight must be greater than or equal to 10 kilos. Try again.")
+      if (answer > 200) return askForWeight("The weight should be less than 200 Kilos. Try again.")
       return answer
     }
 
+    const askForHeight = async (msg = null) => {
+      if (msg) console.log( msg)
+      const answer = await rl.question("height in meters!\n")
+      if( answer > 300) return  askForHeight("the height should not be more than 300 CM")
+      if( answer <50) return  askForHeight("the height should not be less than 50 CM")
+      return Math.round(answer)
+
+    } 
     const name = await askForName()
     
     let gender= null
@@ -35,19 +43,18 @@ const rl = readline.createInterface({ input, output });
     
     const kilos = await askForWeight()
     
-    const meter = await rl.question("height in meters!\n")
+    const meter = await askForHeight()
 
     rl.close();
-    console.log(name,gender,kilos,meter)
+    
  
 
-    const user = {
-        name: name,
-        gender: gender,
-        kilos: kilos,
-        meter:meter 
-    
-    } 
+    const user =  [name, gender,kilos,meter ]
+    const countLong = 35 - user.join('').length 
+    const completeTo35 = (num) => ' '.repeat(num)
+    let complete = completeTo35(countLong )
+    user.push(complete)
+
 
     
    
