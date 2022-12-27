@@ -34,6 +34,7 @@ const rl = readline.createInterface({ input, output });
       return Math.round(answer)
 
     } 
+    
     const name = await askForName()
     
     let gender= null
@@ -47,20 +48,26 @@ const rl = readline.createInterface({ input, output });
 
     rl.close();
     
- 
+    const asignarId =()=> Math.random().toString(36).substr(2, 9);
+    const id = asignarId()
+    
 
-    const user =  [name, gender,kilos,meter ]
-    const countLong = 35 - user.join('').length 
-    const completeTo35 = (num) => ' '.repeat(num)
+    const user = [id ,name ,gender, kilos ,meter ]
+    const countLong = 46 - user.join('').length 
+    const completeTo35 = (num) => '-'.repeat(num)
     let complete = completeTo35(countLong )
     user.push(complete)
 
 
-    
+    const userData = user.join(', ');
    
-    appendFile("./users.json", JSON.stringify(user)+ "\n",(err)=>{
+    appendFile("./users.txt", userData + "\n",(err)=>{
         if(err){
             console.log(err)
+          
             exit(1) 
-        }})
+        }
+      console.log(`thank you ${name}, your data is complete`)
+      })
        
+      
