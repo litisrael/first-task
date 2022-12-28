@@ -21,8 +21,11 @@ const updateUsersMap = async (id, line) => {
       console.log('The file has been saved!');
     }) 
 }
-   
-
+ 
+// const getUsersByid = (usersMap) => {
+//   console.log( line)
+// };
+//getUsersByid()
 const createUser = (user) => {
   appendFile("./users.txt", addEmptyChars(JSON.stringify(user)) + "\n",(err)=>{
     if(err){
@@ -56,7 +59,7 @@ console.log(getUsersCount())
       console.log(`thank you ${name}, your data is complete`)
 
     
-   
+      
 
        
    
