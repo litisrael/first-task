@@ -1,33 +1,25 @@
-
+import { asignarId , addEmptyChars } from './utilytis.js';
 import { appendFile, readFile, writeFile,readFileSync } from 'node:fs'
 import { rl, askForName,askForGender,askForHeight,askForWeight } from './question.js';
-import { lastNumber ,nextNumber } from './control.js';
-export const usersMap = new Map()
-const asignarId =()=> Math.random().toString(36).substr(2, 9);
-    let id = asignarId()
- const  addToMap =(id) => usersMap.set(id,usersMap.size);
- const mapActualy= addToMap()
+import { lastValueUserMap  } from './control.js';
 
-const addEmptyChars = (str, targetLength=99) => {
-  const countLong = targetLength - str.length 
-  const completeTo35 = (num) => ' '.repeat(num)
-  return str + completeTo35(countLong ) 
+const usersMap = new Map()
+const  addToMap =(id) => {
+  usersMap.set(id, lastValueUserMap);
+  return { id: id, value: lastValueUserMap };
 }
 
-const  listMap  = async () => {
-  await appendFile("./useresMap.txt",JSON.stringify(mapActualy) + "\n" ,(err)=>{
+let id = asignarId()
+let addToMapActualy = addToMap(id)
+
+const  creatlistMap  =  () => {
+   appendFile("./usersMap.txt",addEmptyChars(JSON.stringify(addToMapActualy),34) + "\n" ,(err)=>{
     if(err){
         console.log(err)
         exit(1) 
     }
   })
 }
-
-
-
-
-  
-
 
 // const updateUsersMap = async (id, lastNumber) => {
 //   const data = await readFile('./usersMap.json', 'utf8', (err, data) => {
@@ -47,14 +39,14 @@ const  listMap  = async () => {
 
 
 const createUser = (user) => {
-  appendFile("./users.txt", addEmptyChars(JSON.stringify(user)) + "\n",(err)=>{
+  appendFile("./users.txt", addEmptyChars(JSON.stringify(user),99) + "\n",(err)=>{
     if(err){
         console.log(err)
         exit(1) 
     }
   })
-   addToMap(user.id);
-   listMap();
+  addToMapActualy
+  creatlistMap();
    
 }
 
@@ -79,8 +71,8 @@ const createUser = (user) => {
 
       console.log(`thank you ${name}, your data is complete`)
 
-    console.log(...usersMap.entries())
    
-
+   
+    
        
    
