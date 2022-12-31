@@ -6,22 +6,18 @@ import fs from 'fs'
 const addZeros = number => parseInt(number.toString() + '00');
 const stats = fs.statSync('usersMap.txt');
 const file = fs.createReadStream('./users.txt');
-
-
-//  function getUserById(id) {
-//     const statUsers = fs.statSync('users.txt');
-//     //let data = JSON.parse(fs.readFileSync('usersMap.json', 'utf8'));
-//     let index = lastNumber
-//     const start = addZeros(index);
-//     const end = start + 99;   
-//     const stream = fs.createReadStream('users.txt', { start, end });
-//     stream.on('data', chunk => {
-//       console.log(chunk.toString());
-//     });
-//   }
+ function getUserById(id) {
+    const statUsers = fs.statSync('users.txt');
+    const start = addZeros(id-1);
+    const end = start + 99;   
+    const stream = fs.createReadStream('users.txt', { start, end });
+    stream.on('data', chunk => {
+      console.log(chunk.toString());
+    });
+  }
 //console.log(`Tamaño del archivo 'users.txt': ${stats.size} bytes`);
   
-
+console.log(getUserById(3))
 
 
 // Obtener tamaño del archivo
