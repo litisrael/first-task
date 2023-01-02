@@ -31,7 +31,8 @@ import { stdin as input, stdout as output } from 'node:process';
         if( answer <50) return  askForHeight("the height should not be less than 50 CM")
         return Math.round(answer)
   
-      } 
+      }
+      
       export const askForGender = async ( )=>{
         let gender = null
         while (gender !== 'M' && gender !== 'F') {
