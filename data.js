@@ -1,4 +1,4 @@
-import { addEmptyChars, addZeros } from './utilytis.js';
+import { addEmptyChars } from './utilytis.js';
 import { readFileSync, writeFile, appendFile, statSync } from 'node:fs'
 import fs from 'fs'
 
@@ -6,7 +6,7 @@ import fs from 'fs'
 
 const USERS_PATH = "./users.txt"
 const USER_MAP_PATH = "./usersMap.txt"
-const LINE_SIZE = 59
+const LINE_SIZE = 60
 
 const getUsersFileSize = () => {
   const fileInfo = statSync(USERS_PATH, (error) => {
@@ -29,6 +29,7 @@ export const getUserMap = async () => {
   return await JSON.parse(data)
 }
 
+
 export const saveUserMap = (data) => writeFile(
   USER_MAP_PATH,
   JSON.stringify(data),
@@ -41,16 +42,27 @@ const addUserToMap = async (userId, line) => {
   const oldMap = await getUserMap()
   saveUserMap({...oldMap, [userId]: line})
 }
-function getLineByKey(id) {
+function getLineByLinea(linea) {
   let data = fs.readFileSync('users.txt', 'utf8');
-  const start = addZeros(id-1);
-  const end = start + 59;   
+  const start = (linea -1) * 60
+  const end = (start-1) + 60;   
+  console.log('linea', linea -1)
+  console.log('start', start)
+  console.log('end', end)
   const stream = fs.createReadStream('users.txt', { start, end });
   stream.on('data', chunk => {
     console.log(chunk.toString());
   });
 }
-console.log(getLineByKey(1))
+
+
+const usersMap = await getUserMap()
+console.log(usersMap)
+const getValueByKey = (key) => usersMap[key];
+const getUserById = (id) => getLineByLinea(getValueByKey(id));
+
+console.log(getUserById('q8k1rr8ql'))
+
 
 export const saveUser = (user) => {
   const data = addEmptyChars(JSON.stringify(user), LINE_SIZE - 1) + "\n"
