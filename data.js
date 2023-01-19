@@ -2,24 +2,15 @@ import { addEmptyChars } from './utilytis.js';
 import { readFileSync, writeFile, appendFile, statSync } from 'node:fs'
 import fs from 'fs'
 
-
-
-
-
-
 const USERS_PATH = "./users.txt"
 const USER_MAP_PATH = "./usersMap.txt"
 const LINE_SIZE = 60
-
-
-
-const getUsersFileSize =() =>
+const getUsersFileSize = () =>
 {
-  const fileInfo   = statSync(USERS_PATH, (error) =>
+  const fileInfo = statSync(USERS_PATH, (error) =>
   {
     if (error) console.error(error);
   })
-
   return fileInfo.size
 }
 
