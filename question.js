@@ -1,10 +1,21 @@
-
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
-
+import {getUserById} from './data.js'
   export const rl = readline.createInterface({ input, output });
   console.log("welcome to weight test!!!\n")
-
+ 
+  export const searchOrTest = async( )=>{
+    let answer = await rl.question("if you want to add user press 1 \nif you want to search for user by id press 2\n ")
+    while (answer !== "1" && answer !== "2") {
+        console.log("Invalid option. Please try again.");
+        answer = await rl.question("if you want to add user press 1 \nif you want to search for user by id press 2\n ");
+    }
+    if (answer == "1"){return} 
+    if (answer == "2"){const answerId = await rl.question("witch id u lokking for?\n")
+      getUserById(answerId)
+      return answer
+     } 
+  }
   export const askForName = async (msg = null) => {
         if (msg) console.log(msg)
         const answer = await rl.question("Write your first and last name\n")
