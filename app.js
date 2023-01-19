@@ -22,4 +22,5 @@ if (shouldContinue) {
     ])
     console.log(`thank you ${name}, your data is complete`)
 } 
+
 rl.close();

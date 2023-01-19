@@ -61,9 +61,11 @@ function getLineByLinea(linea) {
 const usersMap = await getUserMap()
 console.log(usersMap)
 
-const getValueByKey = (key) => usersMap[key];
+const getValueByKey = (key) => usersMap.hasOwnProperty(key) ? usersMap[key] : false;
 
-export const getUserById = (id) => getLineByLinea(getValueByKey(id));
+export const getUserById = (id) => getValueByKey(id) 
+? getLineByLinea(getValueByKey(id)) 
+: console.log(`the ${id} does not exist`);
 
 //console.log(getValueByKey('um1u5skru'))
 

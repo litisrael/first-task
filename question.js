@@ -13,6 +13,7 @@ import {getUserById} from './data.js'
     if (answer == "1"){return} 
     if (answer == "2"){const answerId = await rl.question("witch id u lokking for?\n")
       getUserById(answerId)
+      
       return answer
      } 
   }
