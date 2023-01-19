@@ -4,27 +4,35 @@ import fs from 'fs'
 
 
 
+
+
+
 const USERS_PATH = "./users.txt"
 const USER_MAP_PATH = "./usersMap.txt"
 const LINE_SIZE = 60
 
 
 
-const getUsersFileSize = () => {
-  const fileInfo = statSync(USERS_PATH, (error) => {
+const getUsersFileSize =() =>
+{
+  const fileInfo   = statSync(USERS_PATH, (error) =>
+  {
     if (error) console.error(error);
   })
 
   return fileInfo.size
 }
 
-const getUsersLineCount = () => {
+const getUsersLineCount = () =>
+{
   const size = getUsersFileSize()
-  return Math.floor( size / LINE_SIZE)
+  return Math.floor(size / LINE_SIZE)
 }
 
-export const getUserMap = async () => {
-  const data = readFileSync(USER_MAP_PATH, 'utf8', (err) => {
+export const getUserMap = async () =>
+{
+  const data = readFileSync(USER_MAP_PATH, 'utf8', (err) =>
+  {
     if (err) throw err;
   }) || '{}'
 
@@ -35,24 +43,28 @@ export const getUserMap = async () => {
 export const saveUserMap = (data) => writeFile(
   USER_MAP_PATH,
   JSON.stringify(data),
-  (err) => {
+  (err) =>
+  {
     if (err) throw err;
   }
 )
 
-const addUserToMap = async (userId, line) => {
+const addUserToMap = async (userId, line) =>
+{
   const oldMap = await getUserMap()
-  saveUserMap({...oldMap, [userId]: line})
+  saveUserMap({ ...oldMap, [userId]: line })
 }
-function getLineByLinea(linea) {
+function getLineByLinea (linea)
+{
   let data = fs.readFileSync('users.txt', 'utf8');
-  const start = (linea -1) * 60
-  const end = (start-1) + 60;   
+  const start = (linea - 1) * 60
+  const end = (start - 1) + 60;
   // console.log('linea', linea -1)
   // console.log('start', start)
   // console.log('end', end)
   const stream = fs.createReadStream('users.txt', { start, end });
-  stream.on('data', chunk => {
+  stream.on('data', chunk =>
+  {
     console.log(chunk.toString());
   });
 }
@@ -64,23 +76,27 @@ console.log(usersMap)
 const getValueByKey = (key) => usersMap.hasOwnProperty(key) ? usersMap[key] : false;
 
 
-export const getUserById = (id) => getValueByKey(id) 
-? getLineByLinea(getValueByKey(id)) 
-: console.log(`the ${id} does not exist`);
+export const getUserById = (id) => getValueByKey(id)
+  ? getLineByLinea(getValueByKey(id))
+  : console.log(`the ${id} does not exist`);
 
 //console.log(getValueByKey('um1u5skru'))
 
 
 
 
-export const saveUser = (user) => {
+export const saveUser = (user) =>
+{
   const data = addEmptyChars(JSON.stringify(user), LINE_SIZE - 1) + "\n"
 
-  appendFile(USERS_PATH, data, (err) => {
-    if (err) {
+  appendFile(USERS_PATH, data, (err) =>
+  {
+    if (err)
+    {
       console.log(err)
       exit(1)
-    } else {
+    } else
+    {
       addUserToMap(user[0], getUsersLineCount())
     }
   })

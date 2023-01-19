@@ -3,7 +3,7 @@ import { stdin as input, stdout as output } from 'node:process';
 import {getUserById} from './data.js'
   export const rl = readline.createInterface({ input, output });
   console.log("welcome to weight test!!!\n")
-  
+
   export const searchOrTest = async( )=>{
     let answer = await rl.question("if you want to add user press 1 \nif you want to search for user by id press 2\n ")
     while (answer !== "1" && answer !== "2") {
@@ -16,6 +16,7 @@ import {getUserById} from './data.js'
       
       return answer
      } 
+     
   }
   export const askForName = async (msg = null) => {
         if (msg) console.log(msg)
