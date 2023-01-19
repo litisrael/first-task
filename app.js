@@ -2,6 +2,7 @@ import { asignarId } from './utilytis.js';
 import { rl, askForName, askForGender, askForHeight, askForWeight ,searchOrTest} from './question.js';
 import { saveUser } from './data.js'
 
+
 const wathTodo =await searchOrTest()
 let shouldContinue = true;
 if (wathTodo === "2") {
