@@ -1,4 +1,4 @@
-import { asignarId } from './utilytis.js';
+import { asignarId } from "./utilytis.js";
 import {
   rl,
   askForName,
@@ -10,8 +10,7 @@ import {
   idToDelete,
 } from "./question.js";
 import { saveUser } from "./data.js";
-
-
+//prubea si sube 1/22/23
 const wathTodo = await askMenu();
 
 switch (wathTodo) {
@@ -30,6 +29,5 @@ switch (wathTodo) {
     await idToDelete();
     break;
 }
-
 
 rl.close();

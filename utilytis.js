@@ -1,11 +1,10 @@
-//prubea si sube a githube
- export const asignarId =()=> Math.random().toString(36).substr(2, 9);
- //export const addZeros = number => parseInt(number.toString() + '00');
+//prubea si sube 1/22/23
+export const asignarId = () => Math.random().toString(36).substr(2, 9);
+//export const addZeros = number => parseInt(number.toString() + '00');
 // el user tiene 99 letras y el map tiene 33 letras
- 
-export const addEmptyChars = (str, addSpace) =>{
-  const countLong = addSpace - str.length 
-    const completeSpace = (num) => ' '.repeat(num)
-    return str + completeSpace(countLong ) 
-  }
-  
+
+export const addEmptyChars = (str, addSpace) => {
+  const countLong = addSpace - str.length;
+  const completeSpace = (num) => " ".repeat(num);
+  return str + completeSpace(countLong);
+};

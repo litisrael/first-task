@@ -1,7 +1,7 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { getUserById, deleteLine } from "./data.js";
-//prubea si sube a githube
+//prubea si sube 1/22/23
 export const rl = readline.createInterface({ input, output });
 console.log("welcome to weight test!!!");
 
@@ -69,8 +69,7 @@ export const askForGender = async () => {
   let gender = null;
   while (gender !== "M" && gender !== "F") {
     gender = await rl.question('gender: Please answer "M" or "F":\n');
-     gender = gender.toUpperCase();
+    gender = gender.toUpperCase();
   }
   return gender;
 };
-
