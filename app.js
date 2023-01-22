@@ -7,9 +7,10 @@ import {
   askForWeight,
   askMenu,
   searchId,
+  idToDelete,
 } from "./question.js";
 import { saveUser } from "./data.js";
-//prubea si sube a githube
+
 
 const wathTodo = await askMenu();
 
@@ -23,10 +24,11 @@ switch (wathTodo) {
     console.log(`thank you ${name}, your data is complete`);
     break;
   case "2":
-        await searchId();
-       
+    await searchId();
     break;
- 
+  case "3":
+    await idToDelete();
+    break;
 }
 
 

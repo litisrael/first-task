@@ -1,15 +1,15 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
-import { getUserById } from "./data.js";
+import { getUserById, deleteLine } from "./data.js";
 //prubea si sube a githube
 export const rl = readline.createInterface({ input, output });
 console.log("welcome to weight test!!!");
 
 export const askMenu = async () => {
   let answer = await rl.question(
-    "if you want to add user press 1 \nif you want to search for user by id press 2\n "
+    "if you want to add user press 1 \nif you want to search for user by id press 2\nf you want to delete press 3\n "
   );
-  while (answer !== "1" && answer !== "2") {
+  while (answer !== "1" && answer !== "2" && answer !== "3") {
     console.log("Invalid option. Please try again.");
     answer = await rl.question(
       "if you want to add user press 1 \nif you want to search for user by id press 2\n "
@@ -20,6 +20,11 @@ export const askMenu = async () => {
 export const searchId = async () => {
   const answer = await rl.question("witch id u lokking for?\n");
   getUserById(answer);
+};
+
+export const idToDelete = async () => {
+  const answer = await rl.question("witch id u want to delete?\n");
+  deleteLine(answer);
 };
 
 export const askForName = async (msg = null) => {
@@ -68,10 +73,4 @@ export const askForGender = async () => {
   }
   return gender;
 };
-// export const askForGender = async () => {
-//   let gender = null;
-//   while (gender !== "M" && gender !== "F") {
-//     gender = await rl.question('gender: Please answer "M" or "F":\n');
-//   }
-//   return gender;
-// };
+

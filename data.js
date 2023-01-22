@@ -50,9 +50,9 @@ function getLineByLinea (linea)
   let data = fs.readFileSync('users.txt', 'utf8');
   const start = (linea - 1) * 60
   const end = (start - 1) + 60;
-  // console.log('linea', linea -1)
-  // console.log('start', start)
-  // console.log('end', end)
+   console.log('linea', linea -1)
+   console.log('start', start)
+   console.log('end', end)
   const stream = fs.createReadStream('users.txt', { start, end });
   stream.on('data', chunk =>
   {
@@ -71,7 +71,7 @@ export const getUserById = (id) => getValueByKey(id)
   ? getLineByLinea(getValueByKey(id))
   : console.log(`the ${id} does not exist`);
 
-//console.log(getValueByKey('um1u5skru'))
+console.log(getValueByKey('um1u5skru'))
 
 
 
@@ -93,3 +93,24 @@ export const saveUser = (user) =>
   })
 }
 //console.log(getUserById('um1u5skru'))
+
+
+
+
+export const deleteLine = (id) => {
+ const line = +getValueByKey(id);
+    const offset = (line - 1) * LINE_SIZE + 1;;
+    const buffer = Buffer.from("-".repeat(LINE_SIZE));
+    const stream = fs.createWriteStream("users.txt", {
+      flags: "r+",
+      start: offset,
+    });
+    stream.write(buffer);
+    stream.end();
+
+    stream.on("finish", () => {
+      console.log(`Line ${line} was deleted`);
+    });
+  }
+
+//deleteLine("um1u5skru");
