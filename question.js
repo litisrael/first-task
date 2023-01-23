@@ -1,6 +1,8 @@
+import { asignarId } from "./utilytis.js";
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { getUserById, deleteLine } from "./data.js";
+import { saveUser } from "./data.js";
 //prubea si sube 1/22/23
 export const rl = readline.createInterface({ input, output });
 console.log("welcome to weight test!!!");
@@ -72,4 +74,13 @@ export const askForGender = async () => {
     gender = gender.toUpperCase();
   }
   return gender;
+};
+
+export const askForUserInfo = async () => {
+  const name = await askForName();
+  const gender = await askForGender();
+  const kilos = await askForWeight();
+  const meter = await askForHeight();
+  saveUser([asignarId(), name, gender, kilos, meter]);
+  console.log(`thank you ${name}, your data is complete`);
 };

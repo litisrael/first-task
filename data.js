@@ -54,8 +54,8 @@ console.log(usersMap);
 const getValueByKey = (key) =>
   usersMap.hasOwnProperty(key) ? usersMap[key] : false;
 
-export const getUserById = (id) =>
-  getValueByKey(id)
+export const getUserById = async (id) =>
+  await getValueByKey(id)
     ? getLineByLinea(getValueByKey(id))
     : console.log(`the ${id} does not exist`);
 
