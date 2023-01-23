@@ -1,7 +1,7 @@
 import { addEmptyChars } from "./utilytis.js";
 import { readFileSync, writeFile, appendFile, statSync } from "node:fs";
 import fs from "fs";
-//prubea si sube 1/22/23
+//prubea
 const USERS_PATH = "./users.txt";
 const USER_MAP_PATH = "./usersMap.txt";
 const LINE_SIZE = 60;

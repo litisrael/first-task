@@ -3,7 +3,7 @@ import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { getUserById, deleteLine } from "./data.js";
 import { saveUser } from "./data.js";
-//prubea si sube 1/22/23
+//prubea 
 export const rl = readline.createInterface({ input, output });
 console.log("welcome to weight test!!!");
 
